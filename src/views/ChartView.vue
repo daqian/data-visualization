@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import Chart from './../components/Chart.vue'
-import LineChart from './../components/LineChart.vue'
 import CurveChart from './../components/CurveChart.vue'
+import MultipleLineChart from './../components/MultipleLineChart.vue'
+import LineChart from './../components/LineChart.vue'
 </script>
 <template>
   <div class="chart-wrapper">
     <div class="chart-box">
-      <Chart />
+      <CurveChart />
+    </div>
+    <div class="chart-box">
+      <MultipleLineChart />
     </div>
     <div class="chart-box">
       <LineChart />
-    </div>
-    <div class="chart-box">
-      <CurveChart />
     </div>
   </div>
 </template>
