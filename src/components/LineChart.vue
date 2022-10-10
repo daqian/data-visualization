@@ -6,12 +6,12 @@ export default {
     const width = 300;
     const height = 250;
     const data = [
-      { displacement: 0.5, height: 1.8 },
-      { displacement: 1, height: 0 },
-      { displacement: 1.5, height: 0 },
-      { displacement: 2, height: 0 },
-      { displacement: 2.5, height: 0 },
-      { displacement: 3, height: 0 },
+      { displacement: 0.5, redHeight: 1.6, blueHeight: 1.0 },
+      { displacement: 1, redHeight: 0, blueHeight: 1.8 },
+      { displacement: 1.5, redHeight: 0, blueHeight: 1.1 },
+      { displacement: 2, redHeight: 0, blueHeight: 0.9 },
+      { displacement: 2.5, redHeight: 0, blueHeight: 0.8 },
+      { displacement: 3, redHeight: 0, blueHeight: 0.7 },
     ];
 
     const svg = d3.select("#j-line-chart-svg").attr("width", width).attr("height", height);
@@ -32,7 +32,7 @@ export default {
         .scaleLinear()
         .domain(
             d3.extent(data, function (d) {
-              return d.height;
+              return d.redHeight;
             })
         )
         .rangeRound([height - 60, 0]);
@@ -50,20 +50,28 @@ export default {
         .scaleLinear()
         .domain(
             d3.extent(data, function (d) {
-              return d.height;
+              return d.redHeight;
             })
         )
         .rangeRound([height - 40, 20]);
     //4. Creating a Line
-    const line = d3
+    const firstLine = d3
         .line()
         .x(function (d) {
           return lineX(d.displacement);
         })
         .y(function (d) {
-          return lineY(d.height);
+          return lineY(d.redHeight);
         });
 
+    const secondLine = d3
+        .line()
+        .x(function (d) {
+          return lineX(d.displacement);
+        })
+        .y(function (d) {
+          return lineY(d.blueHeight);
+        });
     //5. Appending the Axes to the Chart
     g.append("g")
         .attr("transform", "translate(30," + (height - 40) + ")")
@@ -94,7 +102,13 @@ export default {
         .attr("fill", "none")
         .attr("stroke", "red")
         .attr("stroke-width", 1.5)
-        .attr("d", line);
+        .attr("d", firstLine);
+    g.append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "blue")
+        .attr("stroke-width", 1.5)
+        .attr("d", secondLine);
     svg.append("g")
         .attr("fill", "none")
         .attr("stroke", "red")
@@ -106,7 +120,21 @@ export default {
           return lineX(d.displacement);
         })
         .attr("cy", function (d) {
-          return lineY(d.height);
+          return lineY(d.redHeight);
+        })
+        .attr("r", 2);
+    svg.append("g")
+        .attr("fill", "none")
+        .attr("stroke", "blue")
+        .attr("stroke-width", 2)
+        .selectAll("circle")
+        .data(data)
+        .join("circle")
+        .attr("cx", function (d) {
+          return lineX(d.displacement);
+        })
+        .attr("cy", function (d) {
+          return lineY(d.blueHeight);
         })
         .attr("r", 2);
   },
