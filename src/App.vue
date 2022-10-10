@@ -13,11 +13,11 @@ import HelloWorld from './components/HelloWorld.vue'
 <!--    </div>-->
 <!--  </header>-->
 
-  <nav>
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/about">About</RouterLink>
-    <RouterLink to="/chart">Chart</RouterLink>
-  </nav>
+<!--  <nav>-->
+<!--    <RouterLink to="/">Home</RouterLink>-->
+<!--    <RouterLink to="/about">About</RouterLink>-->
+<!--    <RouterLink to="/chart">Chart</RouterLink>-->
+<!--  </nav>-->
   <RouterView />
 </template>
 

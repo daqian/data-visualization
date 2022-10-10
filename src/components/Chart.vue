@@ -2,12 +2,9 @@
 
 import * as d3 from "d3";
 export default {
-  data() {
-    return {};
-  },
   mounted() {
-    const width = 800;
-    const height = 500;
+    const width = 300;
+    const height = 250;
     const data = [
       { date: "24-Apr-07", amount: 93.24 },
       { date: "25-Apr-07", amount: 95.35 },
@@ -24,7 +21,7 @@ export default {
       { date: "10-May-07", amount: 107.34 },
     ];
 
-    const svg = d3.select("svg").attr("width", width).attr("height", height);
+    const svg = d3.select("#j-chart-svg").attr("width", width).attr("height", height);
     const g = svg.append("g");
 
     //2. Parse the dates
@@ -87,36 +84,10 @@ export default {
 
 <template>
   <div>
-    <h2>Vue.js and D3 Line Chart</h2>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
-    </h3>
-    <svg></svg>
+    <svg id="j-chart-svg"></svg>
   </div>
 </template>
 
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  top: -10px;
-}
 
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
-}
 </style>
