@@ -7,7 +7,7 @@ export default {
     const height = 250;
     const data = [
       { displacement: 0.5, redHeight: 1.6, blueHeight: 1.0 },
-      { displacement: 1, redHeight: 0, blueHeight: 1.8 },
+      { displacement: 1, redHeight: 0, blueHeight: 1.6 },
       { displacement: 1.5, redHeight: 0, blueHeight: 1.1 },
       { displacement: 2, redHeight: 0, blueHeight: 0.9 },
       { displacement: 2.5, redHeight: 0, blueHeight: 0.8 },

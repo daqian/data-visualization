@@ -6,8 +6,22 @@ export default {
     const width = 300;
     const height = 250;
     const data = [
-      { displacement: 0, purpleHeight: 100, redHeight: 100, greenHeight: 100, blueHeight: 100 , blackHeight: 100  },
-      { displacement: 100, purpleHeight: 10, redHeight: 20, greenHeight: 30, blueHeight: 40 , blackHeight: 50  },
+      { dataY: 0, purpleX: 76, redX: 70, greenX: 64, blueX: 58 , blackX: 52 },
+      { dataY: 6, purpleX: 76, redX: 70, greenX: 64, blueX: 58 , blackX: 52 },
+      { dataY: 12, purpleX: 76, redX: 70, greenX: 64, blueX: 58 , blackX: 52  },
+      { dataY: 18, purpleX: 76, redX: 70, greenX: 64, blueX: 58 , blackX: 52  },
+      { dataY: 18, purpleX: 69, redX: 63, greenX: 57, blueX: 51 , blackX: 45  },
+      { dataY: 18, purpleX: 69, redX: 63, greenX: 57, blueX: 51 , blackX: 45  },
+      { dataY: 30, purpleX: 69, redX: 63, greenX: 57, blueX: 51 , blackX: 45  },
+      { dataY: 30, purpleX: 63, redX: 57, greenX: 51, blueX: 45 , blackX: 39  },
+      { dataY: 74, purpleX: 63, redX: 57, greenX: 51, blueX: 45 , blackX: 39  },
+      { dataY: 82, purpleX: 63, redX: 57, greenX: 51, blueX: 45 , blackX: 39  },
+      { dataY: 82, purpleX: 55, redX: 49, greenX: 43, blueX: 37 , blackX: 31  },
+      { dataY: 82, purpleX: 51, redX: 45, greenX: 39, blueX: 33 , blackX: 27  },
+      { dataY: 94, purpleX: 51, redX: 45, greenX: 39, blueX: 33 , blackX: 27  },
+      { dataY: 94, purpleX: 39, redX: 33, greenX: 27, blueX: 21 , blackX: 15  },
+      { dataY: 94, purpleX: 35, redX: 29, greenX: 23, blueX: 17 , blackX: 11  },
+      { dataY: 100, purpleX: 35, redX: 29, greenX: 23, blueX: 17 , blackX: 11 },
     ];
 
     const svg = d3.select("#j-multiple-line-chart-two-svg").attr("width", width).attr("height", height);
@@ -19,7 +33,7 @@ export default {
         .scaleTime()
         .domain(
             d3.extent(data, function (d) {
-              return d.displacement;
+              return d.purpleX;
             })
         )
         .rangeRound([0, width - 60]);
@@ -28,7 +42,7 @@ export default {
         .scaleLinear()
         .domain(
             d3.extent(data, function (d) {
-              return d.purpleHeight;
+              return d.dataY;
             })
         )
         .rangeRound([height - 60, 0]);
@@ -37,7 +51,7 @@ export default {
         .scaleTime()
         .domain(
             d3.extent(data, function (d) {
-              return d.displacement;
+              return d.purpleX;
             })
         )
         .rangeRound([30, width - 40]);
@@ -46,7 +60,7 @@ export default {
         .scaleLinear()
         .domain(
             d3.extent(data, function (d) {
-              return d.purpleHeight;
+              return d.dataY;
             })
         )
         .rangeRound([height - 60, 20]);
@@ -54,44 +68,44 @@ export default {
     const firstLine = d3
         .line()
         .x(function (d) {
-          return lineX(d.displacement);
+          return lineX(d.purpleX);
         })
         .y(function (d) {
-          return lineY(d.purpleHeight);
+          return lineY(d.dataY);
         });
 
     const secondLine = d3
         .line()
         .x(function (d) {
-          return lineX(d.displacement);
+          return lineX(d.redX);
         })
         .y(function (d) {
-          return lineY(d.redHeight);
+          return lineY(d.dataY);
         });
 
     const thirdLine = d3
         .line()
         .x(function (d) {
-          return lineX(d.displacement);
+          return lineX(d.greenX);
         })
         .y(function (d) {
-          return lineY(d.greenHeight);
+          return lineY(d.dataY);
         });
     const fourthLine = d3
         .line()
         .x(function (d) {
-          return lineX(d.displacement);
+          return lineX(d.blueX);
         })
         .y(function (d) {
-          return lineY(d.blueHeight);
+          return lineY(d.dataY);
         });
     const fifthLine = d3
         .line()
         .x(function (d) {
-          return lineX(d.displacement);
+          return lineX(d.blackX);
         })
         .y(function (d) {
-          return lineY(d.blackHeight);
+          return lineY(d.dataY);
         });
     //5. Appending the Axes to the Chart
     g.append("g")
