@@ -1,10 +1,25 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { Ref } from 'vue'
-import { ElSelectV2, ElButton, ElButtonGroup } from 'element-plus'
+import type {Ref} from 'vue'
+import {ref} from 'vue'
 import type {SelectOption} from "@/lib/interfaces";
+import {DataTypeLabel, DataTypeValue} from "@/lib/enums";
+import { ElSelectV2, ElButton, ElButtonGroup } from 'element-plus'
 
-const selectHoleValue: Ref<number> = ref<number>(0)
+
+const count = ref(0)
+let dataTypeValue: Ref<DataTypeValue> = ref<DataTypeValue>(DataTypeValue.History);
+const dataTypeOptions: SelectOption[] = [
+  {
+    value: DataTypeValue.History,
+    label: DataTypeLabel.History
+  },
+  {
+    value: DataTypeValue.RealTime,
+    label: DataTypeLabel.RealTime
+  }
+]
+
+const selectHoleValue: number = 0
 const selectHoleOptions: SelectOption[] = [
   {
     value: 0,
@@ -16,7 +31,7 @@ const selectHoleOptions: SelectOption[] = [
   }
 ]
 
-const selectImageValues: Ref<SelectOption[]> = ref<SelectOption[]>([])
+const selectImageValues: SelectOption[] = [];
 const selectImageOptions: SelectOption[] = [
   {
     value: 0,
@@ -44,15 +59,21 @@ const selectImageOptions: SelectOption[] = [
   }
 ]
 
+const toggleDataType = (value: DataTypeValue) => {
+  dataTypeValue.value = value;
+
+}
 </script>
 
 <template>
+  <button @click="count++">{{ count }}</button>
   <div class="header-condition">
     <div class="condition-element">
       <el-button-group>
-        <el-button type="primary" class="toggle-button active">历史</el-button>
-        <el-button type="primary" class="toggle-button">
-          实时
+        <el-button type="primary"
+                   class="toggle-button"
+                   :class="{ active: dataTypeValue === option.value }" @click="toggleDataType(option.value)" v-for="option in dataTypeOptions">
+          {{ option.label }}
         </el-button>
       </el-button-group>
     </div>
