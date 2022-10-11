@@ -14,21 +14,27 @@ import MultipleLineChartThree from './../components/MultipleLineChartThree.vue'
       <div class="chart-wrapper">
         <div class="chart-box">
           <CurveChart />
+          <div>最小循环周</div>
         </div>
         <div class="chart-box">
           <MultipleLineChart />
+          <div>最小循环时间</div>
         </div>
         <div class="chart-box">
           <LineChart />
+          <div>岩屑床高度</div>
         </div>
         <div class="chart-box">
           <MultipleLineChartOne />
+          <div>环空流速</div>
         </div>
         <div class="chart-box">
           <MultipleLineChartTwo />
+          <div>携岩指数（CCI）</div>
         </div>
         <div class="chart-box">
           <MultipleLineChartThree />
+          <div>岩屑浓度百分比</div>
         </div>
       </div>
       <div class="right-side">
@@ -65,5 +71,9 @@ import MultipleLineChartThree from './../components/MultipleLineChartThree.vue'
 }
 .chart-box {
   margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-import { ElSelectV2, ElButton, ElDropdown, ElDropdownMenu, ElDropdownItem, ElIcon, ElButtonGroup } from 'element-plus'
+import { ElSelectV2, ElButton, ElButtonGroup } from 'element-plus'
 import type {SelectOption} from "@/lib/interfaces";
 
-const value: Ref<number> = ref<number>(0)
-const options: SelectOption[] = [
+const selectHoleValue: Ref<number> = ref<number>(0)
+const selectHoleOptions: SelectOption[] = [
   {
     value: 0,
     label: '主井筒'
@@ -16,6 +16,33 @@ const options: SelectOption[] = [
   }
 ]
 
+const selectImageValues: Ref<SelectOption[]> = ref<SelectOption[]>([])
+const selectImageOptions: SelectOption[] = [
+  {
+    value: 0,
+    label: '最小循环周'
+  },
+  {
+    value: 1,
+    label: "最小循环时间"
+  },
+  {
+    value: 2,
+    label: "岩屑床高度"
+  },
+  {
+    value: 3,
+    label: "环空流速"
+  },
+  {
+    value: 4,
+    label: "携岩指数（CCI）"
+  },
+  {
+    value: 5,
+    label: "岩屑浓度百分比"
+  }
+]
 
 </script>
 
@@ -31,31 +58,20 @@ const options: SelectOption[] = [
     </div>
     <div class="condition-element">
       <el-select-v2
-          v-model="value"
-          :options="options"
+          v-model="selectHoleValue"
+          :options="selectHoleOptions"
           placeholder="Please select"
-          size="large"
+          style="width: 120px"
       />
     </div>
-    <div>
-
-      <el-dropdown>
-    <span class="el-dropdown-link">
-      图像选择
-      <el-icon class="el-icon--right">
-        <arrow-down />
-      </el-icon>
-    </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item>Action 1</el-dropdown-item>
-            <el-dropdown-item>Action 2</el-dropdown-item>
-            <el-dropdown-item>Action 3</el-dropdown-item>
-            <el-dropdown-item disabled>Action 4</el-dropdown-item>
-            <el-dropdown-item divided>Action 5</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+    <div class="condition-element">
+      <el-select-v2
+          v-model="selectImageValues"
+          :options="selectImageOptions"
+          placeholder="图像选择"
+          style="width: 240px"
+          multiple
+      />
     </div>
   </div>
 </template>
