@@ -5,8 +5,6 @@ import type {SelectOption} from "@/lib/interfaces";
 import {DataTypeLabel, DataTypeValue} from "@/lib/enums";
 import { ElSelectV2, ElButton, ElButtonGroup } from 'element-plus'
 
-
-const count = ref(0)
 let dataTypeValue: Ref<DataTypeValue> = ref<DataTypeValue>(DataTypeValue.History);
 const dataTypeOptions: SelectOption[] = [
   {
@@ -66,7 +64,6 @@ const toggleDataType = (value: DataTypeValue) => {
 </script>
 
 <template>
-  <button @click="count++">{{ count }}</button>
   <div class="header-condition">
     <div class="condition-element">
       <el-button-group>
