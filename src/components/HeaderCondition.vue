@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type {Ref} from 'vue'
-import {ref} from 'vue'
+import {ref,defineEmits} from 'vue'
 import type {SelectOption} from "@/lib/interfaces";
 import {DataTypeLabel, DataTypeValue} from "@/lib/enums";
 import { ElSelectV2, ElButton, ElButtonGroup } from 'element-plus'
+import {DataTypeMap} from "@/lib/maps";
 
+const emit = defineEmits(['onConditionChange'])
 let dataTypeValue: Ref<DataTypeValue> = ref<DataTypeValue>(DataTypeValue.History);
 const dataTypeOptions: SelectOption[] = [
   {
@@ -17,7 +19,7 @@ const dataTypeOptions: SelectOption[] = [
   }
 ]
 
-const selectHoleValue: number = 0
+let selectHoleValue: Ref<number> = ref<number>(0);
 const selectHoleOptions: SelectOption[] = [
   {
     value: 0,
@@ -29,7 +31,7 @@ const selectHoleOptions: SelectOption[] = [
   }
 ]
 
-const selectImageValues: SelectOption[] = [];
+let selectImageValues: Ref<number[]> = ref<number[]>([]);
 const selectImageOptions: SelectOption[] = [
   {
     value: 0,
@@ -59,7 +61,21 @@ const selectImageOptions: SelectOption[] = [
 
 const toggleDataType = (value: DataTypeValue) => {
   dataTypeValue.value = value;
-
+  emit('onConditionChange', {
+    dataType: DataTypeMap[value]
+  })
+}
+const onSelectHoleValueChange = (value: number) => {
+  selectHoleValue.value = value;
+  emit('onConditionChange', {
+    selectHoleValue: value
+  })
+}
+const onSelectImageValuesChange = (value: number[]) => {
+  selectImageValues.value = value;
+  emit('onConditionChange', {
+    selectImageValues: value
+  })
 }
 </script>
 
@@ -80,6 +96,7 @@ const toggleDataType = (value: DataTypeValue) => {
           :options="selectHoleOptions"
           placeholder="Please select"
           style="width: 120px"
+          @change="onSelectHoleValueChange"
       />
     </div>
     <div class="condition-element">
@@ -89,6 +106,7 @@ const toggleDataType = (value: DataTypeValue) => {
           placeholder="图像选择"
           style="width: 240px"
           multiple
+          @change="onSelectImageValuesChange"
       />
     </div>
   </div>

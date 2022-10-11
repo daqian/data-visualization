@@ -6,10 +6,14 @@ import LineChart from './../components/LineChart.vue'
 import MultipleLineChartOne from './../components/MultipleLineChartOne.vue'
 import MultipleLineChartTwo from './../components/MultipleLineChartTwo.vue'
 import MultipleLineChartThree from './../components/MultipleLineChartThree.vue'
+
+const onConditionChange = function (condition: any) {
+  console.log(condition);
+}
 </script>
 <template>
   <div class="wrapper">
-    <HeaderCondition />
+    <HeaderCondition @onConditionChange="onConditionChange" />
     <div class="content">
       <div class="chart-wrapper">
         <div class="chart-box">
