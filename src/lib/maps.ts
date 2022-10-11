@@ -1,6 +1,6 @@
-import {DataTypeLabel, DataTypeValue} from "@/lib/enums";
+import { DataTypeLabel, DataTypeValue } from "@/lib/enums";
 
 export const DataTypeMap = {
-    [DataTypeValue.History]: DataTypeLabel.History,
-    [DataTypeValue.RealTime]: DataTypeLabel.RealTime,
-}
+  [DataTypeValue.History]: DataTypeLabel.History,
+  [DataTypeValue.RealTime]: DataTypeLabel.RealTime,
+};

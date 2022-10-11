@@ -1,5 +1,4 @@
 <script>
-
 import * as d3 from "d3";
 export default {
   mounted() {
@@ -21,7 +20,10 @@ export default {
       { date: "10-May-07", amount: 107.34 },
     ];
 
-    const svg = d3.select("#j-chart-svg").attr("width", width).attr("height", height);
+    const svg = d3
+      .select("#j-chart-svg")
+      .attr("width", width)
+      .attr("height", height);
     const g = svg.append("g");
 
     //2. Parse the dates
@@ -29,55 +31,55 @@ export default {
 
     //3. Creating the Chart Axes
     const x = d3
-        .scaleTime()
-        .domain(
-            d3.extent(data, function (d) {
-              return parseTime(d.date);
-            })
-        )
-        .rangeRound([0, width]);
+      .scaleTime()
+      .domain(
+        d3.extent(data, function (d) {
+          return parseTime(d.date);
+        })
+      )
+      .rangeRound([0, width]);
 
     const y = d3
-        .scaleLinear()
-        .domain(
-            d3.extent(data, function (d) {
-              return d.amount;
-            })
-        )
-        .rangeRound([height, 0]);
+      .scaleLinear()
+      .domain(
+        d3.extent(data, function (d) {
+          return d.amount;
+        })
+      )
+      .rangeRound([height, 0]);
 
     //4. Creating a Line
     const line = d3
-        .line()
-        .x(function (d) {
-          return x(parseTime(d.date));
-        })
-        .y(function (d) {
-          return y(d.amount);
-        });
+      .line()
+      .x(function (d) {
+        return x(parseTime(d.date));
+      })
+      .y(function (d) {
+        return y(d.amount);
+      });
 
     //5. Appending the Axes to the Chart
     g.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
 
     g.append("g")
-        .call(d3.axisLeft(y))
-        .append("text")
-        .attr("fill", "#000")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", "0.71em")
-        .attr("text-anchor", "end")
-        .text("Price ($)");
+      .call(d3.axisLeft(y))
+      .append("text")
+      .attr("fill", "#000")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Price ($)");
 
     //6. Appending a path to the Chart
     g.append("path")
-        .datum(data)
-        .attr("fill", "none")
-        .attr("stroke", "steelblue")
-        .attr("stroke-width", 1.5)
-        .attr("d", line);
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 1.5)
+      .attr("d", line);
   },
 };
 </script>
@@ -88,6 +90,4 @@ export default {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
