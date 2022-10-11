@@ -48,8 +48,8 @@ const onConditionChange = function (condition: any) {
         </div>
       </div>
       <div class="right-side">
-        <div class="param-config">Param Config</div>
-        <div class="hole-size">Hole Size</div>
+        <div class="param-config">计算参数配置</div>
+        <div class="hole-size">井眼尺寸</div>
       </div>
     </div>
   </div>
