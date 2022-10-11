@@ -74,7 +74,7 @@ const onConditionChange = function (condition: any) {
   flex-direction: column;
 }
 .param-config {
-  height: 200px;
+  height: 400px;
 }
 .hole-size {
 
